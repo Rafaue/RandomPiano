@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Random - Wirtualne Pianino</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Piano Random</h1>
+            <p>Zagraj losowe dźwięki pianina i baw się muzyką!</p>
+        </header>
+
+        <nav class="mode-tabs">
+            <button class="tab-btn active" data-mode="random">Losowe dźwięki</button>
+            <button class="tab-btn" data-mode="chords">Akordy</button>
+            <button class="tab-btn" data-mode="triads">Trójdźwięki</button>
+        </nav>
+
+        <main>
+            <!-- Tryb losowych dźwięków -->
+            <div class="piano-container mode-container active" id="random-mode">
+                <div class="character-container">
+                    <div class="character">
+                        <!-- Pianino z nutkami -->
+                        <img src="images/piano.svg" alt="Pianino z nutkami" id="character-img">
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="random-sound-btn" class="btn primary-btn">Zagraj losowy dźwięk</button>
+                    <button id="toggle-sound-info-btn" class="btn secondary-btn">Pokaż nazwę dźwięku</button>
+                    <button id="toggle-lock-mode-btn" class="btn secondary-btn">Włącz tryb blokowania</button>
+                </div>
+
+                <div id="sound-info" class="sound-info hidden">Nazwa dźwięku: <span id="current-sound">-</span></div>
+
+                <div class="piano-keyboard">
+                    <!-- Klawisze pianina będą generowane przez JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Tryb akordów -->
+            <div class="piano-container mode-container" id="chords-mode">
+                <div class="character-container">
+                    <div class="character">
+                        <img src="images/piano.svg" alt="Pianino z nutkami" id="character-img-chords">
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <div class="chord-selector">
+                        <label for="chord-root">Podstawa akordu:</label>
+                        <select id="chord-root" class="select-input">
+                            <option value="C">C</option>
+                            <option value="C#">C#</option>
+                            <option value="D">D</option>
+                            <option value="D#">D#</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="F#">F#</option>
+                            <option value="G">G</option>
+                            <option value="G#">G#</option>
+                            <option value="A">A</option>
+                            <option value="A#">A#</option>
+                            <option value="B">H</option>
+                        </select>
+                        
+                        <label for="chord-type">Typ akordu:</label>
+                        <select id="chord-type" class="select-input">
+                            <option value="major">Durowy</option>
+                            <option value="minor">Molowy</option>
+                            <option value="7">Septymowy</option>
+                            <option value="maj7">Maj7</option>
+                            <option value="min7">Min7</option>
+                        </select>
+                    </div>
+                    
+                    <button id="play-chord-btn" class="btn primary-btn">Zagraj akord</button>
+                </div>
+                
+                <div id="chord-info" class="sound-info">Akord: <span id="current-chord">-</span></div>
+                
+                <div class="piano-keyboard" id="chord-keyboard">
+                    <!-- Klawisze pianina dla akordów będą generowane przez JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Tryb trójdźwięków -->
+            <div class="piano-container mode-container" id="triads-mode">
+                <div class="character-container">
+                    <div class="character">
+                        <img src="images/piano.svg" alt="Pianino z nutkami" id="character-img-triads">
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <div class="triad-selector">
+                        <label for="triad-root">Podstawa trójdźwięku:</label>
+                        <select id="triad-root" class="select-input">
+                            <option value="C">C</option>
+                            <option value="C#">C#</option>
+                            <option value="D">D</option>
+                            <option value="D#">D#</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="F#">F#</option>
+                            <option value="G">G</option>
+                            <option value="G#">G#</option>
+                            <option value="A">A</option>
+                            <option value="A#">A#</option>
+                            <option value="B">H</option>
+                        </select>
+                        
+                        <label for="triad-type">Typ trójdźwięku:</label>
+                        <select id="triad-type" class="select-input">
+                            <option value="major">Durowy</option>
+                            <option value="minor">Molowy</option>
+                            <option value="diminished">Zmniejszony</option>
+                            <option value="augmented">Zwiększony</option>
+                        </select>
+                        
+                        <label for="triad-inversion">Przewrót:</label>
+                        <select id="triad-inversion" class="select-input">
+                            <option value="0">Postać zasadnicza</option>
+                            <option value="1">Pierwszy przewrót</option>
+                            <option value="2">Drugi przewrót</option>
+                        </select>
+                    </div>
+                    
+                    <button id="play-triad-btn" class="btn primary-btn">Zagraj trójdźwięk</button>
+                </div>
+                
+                <div id="triad-info" class="sound-info">Trójdźwięk: <span id="current-triad">-</span></div>
+                
+                <div class="piano-keyboard" id="triad-keyboard">
+                    <!-- Klawisze pianina dla trójdźwięków będą generowane przez JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 Piano Random - Projekt stworzony z ❤️</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
