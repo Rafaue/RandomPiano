@@ -30,9 +30,6 @@ To add your own piano sounds:
 1. Place sound files in MP3 or WAV format in the `sounds/` folder
 2. Name the files according to note names, e.g., `C4.caf`, `D4.caf`, etc.
 
-## License
-The project is available under the MIT license.
-
 ---
 
 © 2026 Piano Random - Project created with ❤️
